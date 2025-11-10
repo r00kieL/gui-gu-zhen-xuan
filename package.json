@@ -13,9 +13,10 @@
     "lint:eslint": "eslint src/**/*.{ts,vue} --cache --fix",
     "lint:style": "stylelint src/**/*.{css,scss,vue} --cache --fix",
     "prepare": "husky",
-    "commitlint": "commitlint --config commitlint.config.cjs -V"
+    "commitlint": "commitlint --config commitlint.config.cjs -e -V"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "husky": "^9.1.7",
     "vue": "^3.5.22"
   },
