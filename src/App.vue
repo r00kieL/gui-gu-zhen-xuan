@@ -1,5 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+var a = 100
+</script>
 
-<template></template>
+<template>
+  <div class="box">
+    <h1>h1根组件</h1>
+  </div>
+</template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.box {
+  width: 600px;
+  height: 600px;
+  background-color: black;
+  h1 {
+  }
+}
+</style>
