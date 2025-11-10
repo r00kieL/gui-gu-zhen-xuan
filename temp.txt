@@ -1,0 +1,67 @@
+import { defineConfig } from "eslint/config";
+import js from "@eslint/js";
+import globals from "globals";
+import pluginVue from "eslint-plugin-vue";
+import tseslint from "typescript-eslint";
+import eslintPluginPrettier from "eslint-plugin-prettier";
+import vueParser from "vue-eslint-parser";
+
+export default defineConfig([
+  { ignores: ["dist", "node_modules"] },
+
+  // JS 基础规则
+  js.configs.recommended,
+
+  // Vue �?flat 推荐
+  pluginVue.configs["flat/essential"],
+
+  // TS 的推荐（typescript-eslint �?flat 写法�?  tseslint.configs.recommended,
+
+  // 👇 不要再写 eslintPluginPrettier.configs.recommended �?  // eslintPluginPrettier.configs.recommended,
+
+  {
+    files: ["**/*.{js,cjs,mjs,ts,cts,mts,vue}"],
+    languageOptions: {
+      parser: vueParser,
+      parserOptions: {
+        parser: tseslint.parser,
+        ecmaVersion: "latest",
+        sourceType: "module",
+        ecmaFeatures: { jsx: true },
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.jest,
+        ...globals.es2021,
+      },
+    },
+    plugins: {
+      // 手动�?prettier 挂进来，这样下面�?"prettier/..." 规则才认�?      prettier: eslintPluginPrettier,
+    },
+    rules: {
+      // 你之前的规则
+      "no-var": "error",
+      "no-multiple-empty-lines": ["warn", { max: 1 }],
+      "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
+      "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+      "no-unexpected-multiline": "error",
+      "no-useless-escape": "off",
+
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/prefer-ts-expect-error": "error",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/semi": "off",
+
+      "vue/multi-word-component-names": "off",
+      "vue/script-setup-uses-vars": "error",
+      "vue/no-mutating-props": "off",
+      "vue/attribute-hyphenation": "off",
+
+      // 这就�?eslint-plugin-prettier 推荐里最核心的一�?      "prettier/prettier": "error",
+    },
+  },
+]);
+
