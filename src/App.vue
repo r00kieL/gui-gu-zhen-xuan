@@ -5,7 +5,7 @@ console.log(b);
 
 <template>
   <div class="box">
-    <h1>h1根组件</h1>
+    <h1>h1根组件11</h1>
   </div>
 </template>
 
