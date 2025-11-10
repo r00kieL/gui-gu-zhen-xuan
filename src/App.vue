@@ -1,5 +1,6 @@
 <script setup lang="ts">
-var b = 100
+let b = 100;
+console.log(b);
 </script>
 
 <template>
