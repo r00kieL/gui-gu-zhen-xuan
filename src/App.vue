@@ -1,5 +1,5 @@
 <script setup lang="ts">
-var a = 100
+var b = 100
 </script>
 
 <template>
